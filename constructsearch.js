@@ -21,10 +21,11 @@ var search_url = "http://google.com/search";
 function constructSearch(url, terms, allowed_sites) {
   url += "?q="
   console.log(url)
-  url += encodeURIComponent(terms)
+  url += encodeURIComponent(terms + " ")
+
 
   for (const site of allowed_sites) {
-    url += "site%3a+" + site + "+OR+"
+    url += "site%3a" + site + "+OR+"
   }
 
   // get rid of extra +OR+
@@ -35,8 +36,8 @@ function constructSearch(url, terms, allowed_sites) {
 };
 
 $("button").click(function() {
-  var searchUrl = constructSearch(search_url, "potato soup", allowed_sites);
+  var searchUrl = constructSearch(search_url, "clojure source", allowed_sites);
   console.log(searchUrl);
-  //window.location.assign(searchUrl);
+  window.location.assign(searchUrl);
   // window.location.assign("http://google.com/search?q=potato");
 });
