@@ -1,7 +1,7 @@
 
 
 resource "aws_s3_bucket" "search_site_bucket" {
-  bucket = "search-static-site-d5f00b24-956f-4d31-8eb0-44e5d7e70834"
+  bucket = "search.tauinformatics.com"
   tags   = merge(local.base_tags, {})
   acl    = "public-read"
   policy = data.aws_iam_policy_document.s3_public_read.json
@@ -25,7 +25,7 @@ data "aws_iam_policy_document" "s3_public_read" {
       "s3:getobject"
     ]
     resources = [
-      "arn:aws:s3:::search-static-site-d5f00b24-956f-4d31-8eb0-44e5d7e70834/*"
+      "arn:aws:s3:::search.tauinformatics.com/*"
     ]
   }
 }

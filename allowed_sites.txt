@@ -1,8 +1,7 @@
-reddit.com
-
-news.ycombinator.com
+wikipedia.org
 
 www.mayoclinic.org
+health.harvard.edu
 
 aws.amazon.com
 registry.terraform.io
@@ -10,3 +9,8 @@ developer.mozilla.org
 
 stackoverflow.com
 stackexchange.com
+
+reddit.com
+
+news.ycombinator.com
+
