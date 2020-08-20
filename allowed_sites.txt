@@ -1,4 +1,12 @@
 reddit.com
+
 news.ycombinator.com
+
+www.mayoclinic.org
+
+aws.amazon.com
+registry.terraform.io
+developer.mozilla.org
+
 stackoverflow.com
 stackexchange.com
