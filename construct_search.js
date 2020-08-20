@@ -22,15 +22,13 @@ $("input#query").keypress(function(event) {
   }
 });
 
-var allowed_sites = ["reddit.com", "news.ycombinator.com"];
-
 var search_url = "http://google.com/search";
+var allowed_sites_file = "/allowed_sites.txt";
 
 function constructSearch(url, terms, allowed_sites) {
   url += "?q="
   console.log(url)
   url += encodeURIComponent(terms + " ")
-
 
   for (const site of allowed_sites) {
     url += "site%3a" + site + "+OR+"
@@ -45,9 +43,10 @@ function constructSearch(url, terms, allowed_sites) {
 
 $("button").click(function() {
   var query = $( "input#query" ).val();
-  var searchUrl = constructSearch(search_url, query, allowed_sites);
-  console.log(query);
-  console.log(searchUrl);
-  window.location.assign(searchUrl);
-  // window.location.assign("http://google.com/search?q=potato");
+  // TODO: take multiline site allowlist input from a text box
+  jQuery.get(allowed_sites_file, function( data ) {
+    var allowed_sites = data.trim().split(/\s+/)
+    var searchUrl = constructSearch(search_url, query, allowed_sites)
+    window.location.assign(searchUrl)
+  })
 });
