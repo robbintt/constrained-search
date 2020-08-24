@@ -1,4 +1,7 @@
 wikipedia.org
+github.com
+gitlab.com
+bitbucket.org
 
 www.mayoclinic.org
 health.harvard.edu
@@ -6,11 +9,14 @@ health.harvard.edu
 aws.amazon.com
 registry.terraform.io
 developer.mozilla.org
+readthedocs.org
+python.org
 
 stackoverflow.com
 stackexchange.com
 
-reddit.com
+investopedia.com
 
+reddit.com
 news.ycombinator.com
 
