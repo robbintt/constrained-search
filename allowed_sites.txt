@@ -12,7 +12,7 @@ registry.terraform.io
 developer.mozilla.org
 readthedocs.org
 python.org
-ruby-doc.org
+ruby-lang.org
 ietf.org
 
 stackoverflow.com
