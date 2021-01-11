@@ -1,6 +1,7 @@
 export files="
-allowed_sites.txt
-construct_search.js
+sites.json
+functions.js
+init.js
 index.html
 favicon.ico
 "
