@@ -18,7 +18,7 @@ $(document).ready(function() {
 
   // render the template from sitesdata
   sitesdataPromise.then( function( sitesdata ) {
-    console.log( sitesdata )
+    //console.log( sitesdata )
     populateTemplateFromSearchGroupData( sitesdata )
   });
 
@@ -58,6 +58,10 @@ $(document).ready(function() {
     }
   });
 
+  // check/uncheck all checkboxes
+	$(".selectAll").click(function () {
+		$("input:checkbox").not(this).prop('checked', this.checked);
+	});
 
   // process a "submit search" action
   $("button").click(function() {

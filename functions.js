@@ -58,15 +58,13 @@ function sitesdataRemapper(sitesdata) {
 }
 
 function getSitesForCheckedCategories(checkboxclass, sitesdata) {
-  console.log($( checkboxclass ));
+  //console.log($( checkboxclass ));
   // fix expanded datastructure delivered to populate handlebars template
   sitesdata_object = sitesdataRemapper(sitesdata)
-  console.log(sitesdata_object)
   var sites = []
   $( checkboxclass ).each(async function( index ) {
     if (this.checked) {
       //console.log(this.name)
-      //console.log(sitesdata_object[this.name])
       sites.push(...sitesdata_object[this.name])
     }
   });
