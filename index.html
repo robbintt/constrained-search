@@ -41,59 +41,20 @@
           </div>
         </div>
         <div id="checkbox-rendered-template" class="form-group">
-
-          <!-- loop over block -->
-          <div class="input-group mb-3">
-						<div class="input-group-prepend">
-							<div class="input-group-text">
-								<!-- loop over block, input id populated by json object key -->
-								<input type="checkbox" id="Wikis" name="Wikis" value="true" checked>
-							</div>
-						</div>
-						<span class="input-group-text">Wikis</span>
-						<ul>
-							<!-- loop over website li elements -->
-							<li>elanthipedia.play.net</li>
-							<li>wikipedia.org</li>
-						</ul>
-					</div>
-          <!-- loop over block -->
-          <div class="input-group mb-3">
-						<div class="input-group-prepend">
-							<div class="input-group-text">
-								<!-- input id populated by json object key -->
-								<input type="checkbox" id="Social" name="Social" value="true" checked>
-							</div>
-						</div>
-						<span class="input-group-text">Social</span>
-						<ul>
-							<!-- loop over website li elements -->
-							<li>reddit.com</li>
-							<li>ycombinator.com</li>
-						</ul>
-					</div>
+          <!-- populated by handlebars template -->
         </div>
       </form>
     </div>
     </main>
 
-    <!-- handlebars partials -->
-    <script type="text/x-handlebars-template" id="template">
-      {{name}}
-      {{email}}
-    </script>
-
-    <script type="text/x-handlebars-template" id="quickstart">
-      Handlebars <b>{{doesWhat}}</b>
-    </script>
-
+    <!-- handlebars template -->
     <script type="text/x-handlebars-template" id="checkbox-site-checklist">
-      <!-- searchgroup become the "root object", so we can address its keys directly -->
+      <!-- sitesdata becomes the "root object", so we can address its keys directly -->
       {{#each sitesdata}}
       <div class="input-group mb-3">
         <div class="input-group-prepend">
           <div class="input-group-text">
-            <input type="checkbox" id="{{name}}" name="{{name}}" value="true" checked>
+            <input type="checkbox" id="{{name}}" class="site-category" name="{{name}}" value="true" checked>
           </div>
         </div>
         <span class="input-group-text">{{name}}</span>

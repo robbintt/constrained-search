@@ -13,11 +13,16 @@ function constructSearch(url, terms, allowed_sites) {
   return url
 };
 
-function constrainedSearchRedirect(query) {
-  // TODO: take multiline site allowlist input from a text box
-
+function constrainedSearchRedirect(query, sites) {
   var baseSearchUrl = "http://google.com/search";
-  var allowed_sites_file = "/allowed_sites.txt";
+
+  var searchUrl = constructSearch(baseSearchUrl, query, sites)
+  window.location.assign(searchUrl)
+}
+
+function constrainedSearchRedirectFromFile(query) {
+  var baseSearchUrl = "http://google.com/search";
+  var allowed_sites_file = "allowed_sites.txt";
 
   jQuery.get(allowed_sites_file, function( sitedata ) {
     var allowedSites = sitedata.trim().split(/\s+/)
@@ -26,21 +31,44 @@ function constrainedSearchRedirect(query) {
   })
 }
 
-function getsearchgroupdata() {
-
-  var sitesFile = "sites.json";
-
-  jQuery.getJSON(sitesFile, function( sitesdata ) {
-
-    // compile checkbox template
-    var source = document.getElementById("checkbox-site-checklist").innerHTML;
-    var checkboxTemplate = Handlebars.compile(source);
-
-    // console.log(template({ doesWhat: "is cool!" }));
-
-    console.log(sitesdata)
-
-    document.getElementById('checkbox-rendered-template').innerHTML = checkboxTemplate({ sitesdata: sitesdata });
+async function getSitesData(sitesFile) {
+  var sitesdata = jQuery.getJSON(sitesFile, function( sitesdata ) {
+    //console.log(sitesdata)
   })
+  return await sitesdata
 }
 
+async function populateTemplateFromSearchGroupData(sitesdata) {
+  // compile checkbox template
+  var source = document.getElementById("checkbox-site-checklist").innerHTML;
+  var checkboxTemplate = Handlebars.compile(source);
+  // render checkbox template
+  document.getElementById('checkbox-rendered-template').innerHTML = checkboxTemplate({ sitesdata: sitesdata });
+}
+
+function sitesdataRemapper(sitesdata) {
+  // fix the handlebars json list to actually use mapped names
+  // handlebars by default can't iterate on an objects keys without explicitly saying them
+  // probably could have fixed this with a custom handler in handlebars
+  var mapped_sitedata = {};
+  sitesdata.forEach(function(category) {
+    mapped_sitedata[category.name] = category.sites
+  });
+  return mapped_sitedata
+}
+
+function getSitesForCheckedCategories(checkboxclass, sitesdata) {
+  console.log($( checkboxclass ));
+  // fix expanded datastructure delivered to populate handlebars template
+  sitesdata_object = sitesdataRemapper(sitesdata)
+  console.log(sitesdata_object)
+  var sites = []
+  $( checkboxclass ).each(async function( index ) {
+    if (this.checked) {
+      //console.log(this.name)
+      //console.log(sitesdata_object[this.name])
+      sites.push(...sitesdata_object[this.name])
+    }
+  });
+  return sites
+}
