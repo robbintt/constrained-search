@@ -35,8 +35,17 @@ $(document).ready(function() {
   // TODO: here we will want to get a list of categories as a parameter
   // TODO: if no categories, assume all categories
   if (params.hasOwnProperty('s')) {
-    // TODO: why decode and encode to accomodate the other use of this method
-    constrainedSearchRedirect(decodeURIComponent(params.s))
+
+    // TODO: probably should be a function if it's going to be repeated here and below
+    // TODO: not sure how this plays with checkbox polling
+    // reconstruct sitelist from sites and checkbox names
+    // in the context of sitesdata
+    sitesdataPromise.then( function( sitesdata ) {
+      var sites = getSitesForCheckedCategories(".site-category", sitesdata)
+
+      // TODO: why decode and encode to accomodate the other use of this method
+      constrainedSearchRedirect(decodeURIComponent(params.s), sites)
+    });
   }
 
   // Enter key should trigger js instead of submitting form
@@ -56,7 +65,7 @@ $(document).ready(function() {
     // reconstruct sitelist from sites and checkbox names
     // in the context of sitesdata
     sitesdataPromise.then( function( sitesdata ) {
-      console.log( sitesdata )
+      //console.log( sitesdata )
       var sites = getSitesForCheckedCategories(".site-category", sitesdata)
 
       var query = $( "input#query" ).val();

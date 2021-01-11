@@ -54,5 +54,12 @@
       "wiki.factorio.com",
       "elanthipedia.play.net"
     ]
+  },
+  {
+    "name": "blogs",
+    "sites": [
+      "gwern.net",
+      "krebsonsecurity.com"
+    ]
   }
 ]
