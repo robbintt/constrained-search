@@ -1,0 +1,57 @@
+[
+  {
+    "name": "wikis",
+    "sites": [
+      "wikipedia.org"
+    ]
+  },
+  {
+    "name": "code",
+    "sites": [
+      "github.com",
+      "gitlab.com",
+      "bitbucket.org"
+    ]
+  },
+  {
+    "name": "health",
+    "sites": [
+      "www.mayoclinic.org",
+      "health.harvard.edu",
+      "nih.gov"
+    ]
+  },
+  {
+    "name": "tech",
+    "sites": [
+      "aws.amazon.com",
+      "registry.terraform.io",
+      "developer.mozilla.org",
+      "readthedocs.org",
+      "python.org",
+      "ruby-lang.org",
+      "ietf.org",
+      "stackoverflow.com",
+      "stackexchange.com"
+    ]
+  },
+  {
+    "name": "social",
+    "sites": [
+      "reddit.com",
+      "news.ycombinator.com"
+    ]
+  },
+  {
+    "name": "investing",
+    "sites": [
+      "investopedia.com"
+    ]
+  },
+  {
+    "name": "games",
+    "sites": [
+      "wiki.factorio.com"
+    ]
+  }
+]
