@@ -18,7 +18,7 @@ resource "aws_s3_bucket" "search_site_bucket" {
   bucket = "search.tauinformatics.com"
   tags   = merge(local.base_tags, {})
   acl    = "public-read"
-  policy = data.aws_iam_policy_document.s3_public_read.json
+  policy = data.aws_iam_policy_document.search_s3_public_read.json
 
   website {
     index_document = "index.html"
@@ -30,7 +30,7 @@ resource "aws_s3_bucket" "search_ftl_cc_bucket" {
   bucket = "search.ftl.cc"
   tags   = merge(local.base_tags, {})
   acl    = "public-read"
-  policy = data.aws_iam_policy_document.s3_public_read.json
+  policy = data.aws_iam_policy_document.search_ftl_cc_s3_public_read.json
 
   website {
     index_document = "index.html"
@@ -40,7 +40,7 @@ resource "aws_s3_bucket" "search_ftl_cc_bucket" {
 # nb: comment this and comment the s3 bucket policy to get the bucket ARN, they are cyclic
 # policy from: https://docs.aws.amazon.com/AmazonS3/latest/user-guide/static-website-hosting.html
 # wildcard principal: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document#wildcard-principal
-data "aws_iam_policy_document" "s3_public_read" {
+data "aws_iam_policy_document" "search_s3_public_read" {
   statement {
     sid = "PublicReadGetObject"
     principals {
@@ -51,7 +51,22 @@ data "aws_iam_policy_document" "s3_public_read" {
       "s3:getobject"
     ]
     resources = [
-      "arn:aws:s3:::search.tauinformatics.com/*",
+      "arn:aws:s3:::search.tauinformatics.com/*"
+    ]
+  }
+}
+
+data "aws_iam_policy_document" "search_ftl_cc_s3_public_read" {
+  statement {
+    sid = "PublicReadGetObject"
+    principals {
+      type        = "*"
+      identifiers = ["*"]
+    }
+    actions = [
+      "s3:getobject"
+    ]
+    resources = [
       "arn:aws:s3:::search.ftl.cc/*"
     ]
   }
