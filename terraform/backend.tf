@@ -1,11 +1,9 @@
 locals {
-  # update this per terraform project
-  project_name = "advanced_search"
-
-  # this should be a module or something
-  tf_global_tags   = { "IaC" : "Terraform" }
-  project_name_tag = { "Name" : local.project_name }
-  base_tags        = merge(local.tf_global_tags, local.project_name_tag)
+  project_name   = "advanced_search"
+  tf_global_tags = { "IaC" : "Terraform" }
+  name_tag       = { "Name" : local.project_name }
+  project_tag    = { "Project" : local.project_name }
+  base_tags      = merge(local.tf_global_tags, local.name_tag, local.project_tag)
 }
 
 # Backend bootstrapped in: https://github.com/robbintt/radiant-infra.git

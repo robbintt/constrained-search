@@ -7,5 +7,5 @@ favicon.ico
 "
 for file in $files
 do
-  aws s3 cp $file s3://search.tauinformatics.com
+  aws s3 cp $file s3://search.ftl.cc
 done

@@ -1,9 +1,7 @@
-# ref: https://www.terraform.io/docs/providers/aws/index.html
 provider "aws" {
-  version = "~> 2.0"
-  region  = "us-east-1"
-  # default credentials file
-  shared_credentials_file = "~/.aws/credentials"
-  # this isn't working, not sure why
-  #profile                 = "terraform"
+  region                   = "us-east-1"
+  shared_credentials_files = ["~/.aws/credentials"]
+  default_tags {
+    tags = merge(local.tf_global_tags, local.project_tag, local.name_tag)
+  }
 }
