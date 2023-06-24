@@ -29,11 +29,15 @@ resource "aws_s3_bucket" "search_site_bucket" {
 resource "aws_s3_bucket" "search_ftl_cc_bucket" {
   bucket = "search.ftl.cc"
   tags   = merge(local.base_tags, {})
-  acl    = "public-read"
-  policy = data.aws_iam_policy_document.search_ftl_cc_s3_public_read.json
+}
 
-  website {
-    index_document = "index.html"
+
+
+resource "aws_s3_bucket_website_configuration" "search_ftl_cc" {
+  bucket = aws_s3_bucket.search_ftl_cc_bucket.id
+
+  index_document {
+    suffix = "index.html"
   }
 }
 
