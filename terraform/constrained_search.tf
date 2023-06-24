@@ -58,6 +58,11 @@ resource "aws_s3_bucket_acl" "search_ftl_cc_bucket" {
   acl    = "public-read"
 }
 
+resource "aws_s3_bucket_policy" "search_ftl_cc_s3_public_read" {
+  bucket = aws_s3_bucket.search_ftl_cc_bucket.id
+  policy = data.aws_iam_policy_document.search_ftl_cc_s3_public_read.json
+}
+
 resource "aws_s3_bucket_website_configuration" "search_ftl_cc" {
   bucket = aws_s3_bucket.search_ftl_cc_bucket.id
 
