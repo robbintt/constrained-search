@@ -1,4 +1,4 @@
-export files="
+files="
 sites.json
 functions.js
 init.js
