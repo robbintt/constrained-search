@@ -42,3 +42,10 @@ Add the chrome plugin [New Tab Redirect](https://chrome.google.com/webstore/deta
 ## Terraform
 
 Backend defined in backend, provisioned in `radiant`.
+
+
+## Software Delivery
+
+- use `push_site.sh`
+- use aws cli v1 with access keys
+    - future: upgrade to aws cli v2 with sso
